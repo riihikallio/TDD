@@ -87,7 +87,6 @@ function createApp(database) {
       if (
         date &&
         date.toTemporalInstant().toZonedDateTimeISO("UTC").toPlainDate().equals(holiday2) &&
-        date.getMonth() === holiday.getMonth() &&
         date.getDate() === holiday.getDate()
       ) {
         return true;

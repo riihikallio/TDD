@@ -2,10 +2,12 @@ export class Board {
   width;
   height;
   board;
+  block;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
+    this.block = null;
 
     this.board = Array(height);
     for (let i=0; i<height; i++) {
@@ -14,6 +16,23 @@ export class Board {
         this.board[i][j] = '.';
       }
     }
+  }
+
+  drop(block) {
+    if (this.block === null) {
+      this.block = block;
+      this.block.y = 0;
+      this.block.x = Math.floor(this.width / 2);
+      this.board[this.block.y][this.block.x] = this.block.color;
+    } else {
+      throw("already falling")
+  } 
+}
+
+  tick() {
+    this.board[this.block.y][this.block.x] = '.';
+    this.block.y++;
+    this.board[this.block.y][this.block.x] = this.block.color;
   }
 
   toString() {

@@ -30,7 +30,7 @@ export class Board {
 }
 
   tick() {
-    if (this.block.y < this.height - 1) {
+    if (this.block !== null && this.block.y < this.height - 1 && this.board[this.block.y + 1][this.block.x] === '.') {
       this.board[this.block.y][this.block.x] = '.';
       this.block.y++;
       this.board[this.block.y][this.block.x] = this.block.color;

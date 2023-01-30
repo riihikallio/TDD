@@ -30,9 +30,17 @@ export class Board {
 }
 
   tick() {
-    this.board[this.block.y][this.block.x] = '.';
-    this.block.y++;
-    this.board[this.block.y][this.block.x] = this.block.color;
+    if (this.block.y < this.height - 1) {
+      this.board[this.block.y][this.block.x] = '.';
+      this.block.y++;
+      this.board[this.block.y][this.block.x] = this.block.color;
+    } else {
+      this.block = null;
+    }
+  }
+
+  hasFalling() {
+    return this.block ? true : false;
   }
 
   toString() {

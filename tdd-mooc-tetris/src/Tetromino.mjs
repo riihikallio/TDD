@@ -1,54 +1,9 @@
-import { RotatingShape } from "../src/RotatingShape.mjs";
-
-class Tetromino_O extends RotatingShape {
-    rotateRight() {
-        return this;
-    }
-
-    rotateLeft() {
-        return this;
-    }
-}
-
-class Tetromino_I extends RotatingShape {
-
-    rotateRight() {
-        if (this.str5[14] === 'I') {
-            return new Tetromino_I(
-                `..I..
-                ..I..
-                ..I..
-                ..I..
-                .....`
-                );
-        } else {
-            return Tetromino.I_SHAPE;
-        }
-    }
-
-    rotateLeft() {
-        return this.rotateRight();
-    }
-}
+import { Tetromino_T } from "../src/Tetromino_T.mjs";
+import { Tetromino_I } from "../src/Tetromino_I.mjs";
+import { Tetromino_O } from "../src/Tetromino_O.mjs";
 
 export class Tetromino {
-    static T_SHAPE = new RotatingShape(
-    `.T.
-    TTT
-    ...`
-    );
-
-    static I_SHAPE = new Tetromino_I(
-    `.....
-    .....
-    IIII.
-    .....
-    .....`
-    );
-
-    static O_SHAPE = new Tetromino_O(
-    `.OO
-    .OO
-    ...`
-    );
+    static T_SHAPE = new Tetromino_T();
+    static I_SHAPE = new Tetromino_I();
+    static O_SHAPE = new Tetromino_O();
 }

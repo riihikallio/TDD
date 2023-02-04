@@ -23,7 +23,7 @@ export class Board {
       this.block = block;
       this.block.y = 0;
       this.block.x = Math.floor(this.width / 2);
-      this.board[this.block.y][this.block.x] = this.block.color;
+      this.board[this.block.y][this.block.x] = this.block.center;
     } else {
       throw Error("already falling");
     }
@@ -33,7 +33,7 @@ export class Board {
     if (this.block !== null && this.block.y < this.height - 1 && this.board[this.block.y + 1][this.block.x] === '.') {
       this.board[this.block.y][this.block.x] = '.';
       this.block.y++;
-      this.board[this.block.y][this.block.x] = this.block.color;
+      this.board[this.block.y][this.block.x] = this.block.center;
     } else {
       this.block = null;
     }

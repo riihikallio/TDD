@@ -49,6 +49,31 @@ export class RotatingShape {
         }
     }
 
+    test(board, x, y) {
+        if (this.size === 1) {
+            if (board[y][x] === '.') {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (this.size === 3) {
+        }
+    }
+
+    erase(board, x, y) {
+        if (this.size === 1) {
+                board[y][x] = '.';
+        } else if (this.size === 3) {
+        }
+    }
+
+    draw(board, x, y) {
+        if (this.size === 1) {
+                board[y][x] = this.center;
+        } else if (this.size === 3) {
+        }
+    }
+
     stringify3(s) {
         return s[0] + s[1] + s[2] + '\n' + s[7] + this.center + s[3] + '\n' + s[6] + s[5] + s[4] + '\n';
     }

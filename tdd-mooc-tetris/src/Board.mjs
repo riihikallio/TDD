@@ -23,7 +23,11 @@ export class Board {
       this.block = block;
       this.block.y = 0;
       this.block.x = Math.floor(this.width / 2);
-      this.board[this.block.y][this.block.x] = this.block.center;
+      if (block.test(this.board, this.block.x, this.block.y)) {
+        block.draw(this.board, this.block.x, this.block.y);
+      } else {
+        throw Error("end of game");
+      }
     } else {
       throw Error("already falling");
     }

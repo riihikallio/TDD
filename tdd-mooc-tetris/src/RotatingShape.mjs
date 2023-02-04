@@ -7,7 +7,9 @@ export class RotatingShape {
     constructor(s) {
         s = s.replace(/\s+/g, '');
         this.size = Math.round(Math.sqrt(s.length));
-        if (this.size === 3) {
+        if (this.size === 1) {
+            this.center = s;
+        } else if (this.size === 3) {
             this.center = s[4];
             this.str3 = s.slice(0, 3) + s[5] + s[8] + s[7] + s[6] + s[3];
         } else if (this.size === 5) {
@@ -20,7 +22,9 @@ export class RotatingShape {
     }
 
     rotateRight() {
-        if (this.size === 3) {
+        if (this.size === 1) {
+            return this;
+        } else if (this.size === 3){
             const s = this.str3.slice(-2) + this.str3.slice(0, -2);
             return new RotatingShape(this.stringify3(s));
         } else if (this.size === 5){
@@ -31,7 +35,9 @@ export class RotatingShape {
     }
 
     rotateLeft() {
-        if (this.size === 3) {
+        if (this.size === 1) {
+            return this;
+        } else if (this.size === 3){
             const s = this.str3.slice(2) + this.str3.slice(0, 2);
             return new RotatingShape(this.stringify3(s));
         } else if (this.size === 5){
@@ -56,7 +62,9 @@ export class RotatingShape {
     }
 
     toString() {
-        if (this.size === 3) {
+        if (this.size === 1) {
+            return this.center;
+        } else if (this.size === 3){
             return this.stringify3(this.str3);
         } else if (this.size === 5) {
             return this.stringify5(this.str3, this.str5);

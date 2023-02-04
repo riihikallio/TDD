@@ -25,7 +25,7 @@ export class Board {
       this.block.x = Math.floor(this.width / 2);
       this.board[this.block.y][this.block.x] = this.block.color;
     } else {
-      throw("already falling")
+      throw Error("already falling");
   } 
 }
 

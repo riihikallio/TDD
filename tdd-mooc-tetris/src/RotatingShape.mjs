@@ -15,7 +15,7 @@ export class RotatingShape {
             this.str3 = s.slice(6, 9) + s[13] + s[18] + s[17] + s[16] + s[11];
             this.str5 = s.slice(0, 5) + s[9] + s[14] + s[19] + s[24] + s[23] + s[22] + s[21] + s[20] + s[15] + s[10] + s[5];
         } else {
-            throw ("Undefined size");
+            throw Error("Undefined size");
         }
     }
 

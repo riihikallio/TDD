@@ -34,10 +34,10 @@ export class Board {
   }
 
   tick() {
-    if (this.block !== null && this.block.y < this.height - 1 && this.board[this.block.y + 1][this.block.x] === '.') {
-      this.board[this.block.y][this.block.x] = '.';
+    if (this.block !== null && this.block.y < this.height - 1 && this.block.test(this.board, this.block.x, this.block.y + 1)) {
+      this.block.erase(this.board, this.block.x, this.block.y);
       this.block.y++;
-      this.board[this.block.y][this.block.x] = this.block.center;
+      this.block.draw(this.board, this.block.x, this.block.y);
     } else {
       this.block = null;
     }

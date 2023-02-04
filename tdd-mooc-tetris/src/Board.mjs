@@ -10,9 +10,9 @@ export class Board {
     this.block = null;
 
     this.board = Array(height);
-    for (let i=0; i<height; i++) {
+    for (let i = 0; i < height; i++) {
       this.board[i] = Array(width);
-      for (let j=0; j<width; j++) {
+      for (let j = 0; j < width; j++) {
         this.board[i][j] = '.';
       }
     }
@@ -26,8 +26,8 @@ export class Board {
       this.board[this.block.y][this.block.x] = this.block.color;
     } else {
       throw Error("already falling");
-  } 
-}
+    }
+  }
 
   tick() {
     if (this.block !== null && this.block.y < this.height - 1 && this.board[this.block.y + 1][this.block.x] === '.') {
@@ -45,7 +45,7 @@ export class Board {
 
   toString() {
     let str = '';
-    for (let i=0; i<this.height; i++) {
+    for (let i = 0; i < this.height; i++) {
       str = str.concat(...this.board[i], '\n');
     }
     return str;

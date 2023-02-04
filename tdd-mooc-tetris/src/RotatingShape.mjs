@@ -24,10 +24,10 @@ export class RotatingShape {
     rotateRight() {
         if (this.size === 1) {
             return this;
-        } else if (this.size === 3){
+        } else if (this.size === 3) {
             const s = this.str3.slice(-2) + this.str3.slice(0, -2);
             return new RotatingShape(this.stringify3(s));
-        } else if (this.size === 5){
+        } else if (this.size === 5) {
             const s3 = this.str3.slice(-2) + this.str3.slice(0, -2);
             const s5 = this.str5.slice(-4) + this.str5.slice(0, -4);
             return new RotatingShape(this.stringify5(s3, s5));
@@ -37,10 +37,10 @@ export class RotatingShape {
     rotateLeft() {
         if (this.size === 1) {
             return this;
-        } else if (this.size === 3){
+        } else if (this.size === 3) {
             const s = this.str3.slice(2) + this.str3.slice(0, 2);
             return new RotatingShape(this.stringify3(s));
-        } else if (this.size === 5){
+        } else if (this.size === 5) {
             const s3 = this.str3.slice(2) + this.str3.slice(0, 2);
             const s5 = this.str5.slice(4) + this.str5.slice(0, 4);
             return new RotatingShape(this.stringify5(s3, s5));
@@ -64,7 +64,7 @@ export class RotatingShape {
     toString() {
         if (this.size === 1) {
             return this.center;
-        } else if (this.size === 3){
+        } else if (this.size === 3) {
             return this.stringify3(this.str3);
         } else if (this.size === 5) {
             return this.stringify5(this.str3, this.str5);

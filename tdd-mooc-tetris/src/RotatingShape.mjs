@@ -3,6 +3,8 @@ export class RotatingShape {
     center;
     str3;
     str5;
+    x;
+    y;
 
     constructor(s) {
         s = s.replace(/\s+/g, '');

@@ -3,6 +3,7 @@ export class RotatingShape {
     center;
     str3;
     str5;
+    fullStr;
     x;
     y;
 
@@ -21,6 +22,7 @@ export class RotatingShape {
         } else {
             throw Error("Undefined size");
         }
+        this.fullStr = s;
     }
 
     rotateRight() {
@@ -50,27 +52,40 @@ export class RotatingShape {
     }
 
     test(board, x, y) {
-        if (this.size === 1) {
-            if (board[y][x] === '.') {
+        let s = this.fullStr;
+        let offset = Math.floor(this.size / 2);
+        for (let i = s.length - 1; i >= 0; i--) {   // Start from the end to fail fast
+            if (s[i] === '.') {
+                console.log("### Eka");
+                continue;
+            }
+            let r = y + Math.floor(i / this.size);
+            let c = x - offset + i % this.size;
+            console.log(`R:${r} C:${c} ${board.height}x${board.width}`);
+            if (r >= board.height || c < 0 || c >= board.width) {
+                console.log("### Out of Bounds");
+                return false;
+            } else if (board.arr[r][c] === '.') {
+                console.log("### Vapaa");
                 return true;
             } else {
+                console.log("### Ei vapaana");
                 return false;
             }
-        } else if (this.size === 3) {
         }
+        return false;
     }
 
-    erase(board, x, y) {
-        if (this.size === 1) {
-                board[y][x] = '.';
-        } else if (this.size === 3) {
-        }
-    }
-
-    draw(board, x, y) {
-        if (this.size === 1) {
-                board[y][x] = this.center;
-        } else if (this.size === 3) {
+    draw(board, x, y, char) {
+        let s = this.fullStr;
+        let offset = Math.floor(this.size / 2);
+        for (let i = s.length - 1; i >= 0; i--) {   // Start from the end to fail fast
+            if (s[i] === '.') {
+                continue;
+            }
+            let r = y + Math.floor(i / this.size);
+            let c = x - offset + i % this.size;
+            board.arr[r][c] = char ?? s[i];
         }
     }
 
@@ -90,11 +105,17 @@ export class RotatingShape {
 
     toString() {
         if (this.size === 1) {
-            return this.center;
+            return this.fullStr + '\n';
         } else if (this.size === 3) {
-            return this.stringify3(this.str3);
+            return this.fullStr.slice(0, 3) + '\n' +
+                this.fullStr.slice(3, 6) + '\n' +
+                this.fullStr.slice(6, 9) + '\n';
         } else if (this.size === 5) {
-            return this.stringify5(this.str3, this.str5);
+            return this.fullStr.slice(0, 5) + '\n' +
+                this.fullStr.slice(5, 10) + '\n' +
+                this.fullStr.slice(10, 15) + '\n' +
+                this.fullStr.slice(15, 20) + '\n' +
+                this.fullStr.slice(20, 25) + '\n';
         }
     }
 }

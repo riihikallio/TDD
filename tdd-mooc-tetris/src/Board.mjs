@@ -1,7 +1,7 @@
 export class Board {
   width;
   height;
-  board;
+  arr;
   block;
 
   constructor(width, height) {
@@ -9,11 +9,11 @@ export class Board {
     this.height = height;
     this.block = null;
 
-    this.board = Array(height);
+    this.arr = Array(height);
     for (let i = 0; i < height; i++) {
-      this.board[i] = Array(width);
+      this.arr[i] = Array(width);
       for (let j = 0; j < width; j++) {
-        this.board[i][j] = '.';
+        this.arr[i][j] = '.';
       }
     }
   }
@@ -23,8 +23,8 @@ export class Board {
       this.block = block;
       this.block.y = 0;
       this.block.x = Math.floor(this.width / 2);
-      if (block.test(this.board, this.block.x, this.block.y)) {
-        block.draw(this.board, this.block.x, this.block.y);
+      if (block.test(this, this.block.x, this.block.y)) {
+        block.draw(this, this.block.x, this.block.y);
       } else {
         throw Error("end of game");
       }
@@ -34,10 +34,10 @@ export class Board {
   }
 
   tick() {
-    if (this.block !== null && this.block.y < this.height - 1 && this.block.test(this.board, this.block.x, this.block.y + 1)) {
-      this.block.erase(this.board, this.block.x, this.block.y);
+    if (this.block !== null && this.block.test(this, this.block.x, this.block.y + 1)) {
+      this.block.draw(this, this.block.x, this.block.y, '.');
       this.block.y++;
-      this.block.draw(this.board, this.block.x, this.block.y);
+      this.block.draw(this, this.block.x, this.block.y);
     } else {
       this.block = null;
     }
@@ -50,7 +50,7 @@ export class Board {
   toString() {
     let str = '';
     for (let i = 0; i < this.height; i++) {
-      str = str.concat(...this.board[i], '\n');
+      str = str.concat(...this.arr[i], '\n');
     }
     return str;
   }

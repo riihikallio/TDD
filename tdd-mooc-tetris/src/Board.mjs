@@ -3,6 +3,8 @@ export class Board {
   height;
   arr;
   block;
+  x;
+  y;
 
   constructor(width, height) {
     this.width = width;
@@ -18,13 +20,23 @@ export class Board {
     }
   }
 
+  init(str) {
+    let tmp1 = str.split(/\s+/);
+    for (let i = 0; i < height; i++) {
+      let tmp2 = str.split();
+      for (let j = 0; j < width; j++) {
+        this.arr[i][j] = tmp2[j];
+      }
+    }
+  }
+
   drop(block) {
     if (this.block === null) {
       this.block = block;
-      this.block.y = 0;
-      this.block.x = Math.ceil(this.width / 2) - Math.floor(block.size / 2) - 1;
-      if (block.test(this, this.block.x, this.block.y)) {
-        block.draw(this, this.block.x, this.block.y);
+      this.y = 0;
+      this.x = Math.ceil(this.width / 2) - Math.floor(block.size / 2) - 1;
+      if (block.test(this, this.x, this.y)) {
+        block.draw(this, this.x, this.y);
       } else {
         throw Error("end of game");
       }
@@ -35,12 +47,12 @@ export class Board {
 
   tick() {
     if (this.block !== null) {
-      this.block.draw(this, this.block.x, this.block.y, '.');
-      if (this.block.test(this, this.block.x, this.block.y + 1)) {
-        this.block.y++;
-        this.block.draw(this, this.block.x, this.block.y);
+      this.block.draw(this, this.x, this.y, '.');
+      if (this.block.test(this, this.x, this.y + 1)) {
+        this.y++;
+        this.block.draw(this, this.x, this.y);
       } else {
-        this.block.draw(this, this.block.x, this.block.y);
+        this.block.draw(this, this.x, this.y);
         this.block = null;
       }
     }

@@ -4,8 +4,6 @@ export class RotatingShape {
     str3;
     str5;
     fullStr;
-    x;
-    y;
 
     constructor(s) {
         s = s.replace(/\s+/g, '');

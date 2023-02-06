@@ -22,7 +22,7 @@ export class Board {
     if (this.block === null) {
       this.block = block;
       this.block.y = 0;
-      this.block.x = Math.floor(this.width / 2);
+      this.block.x = Math.ceil(this.width / 2) - Math.floor(block.size / 2) - 1;
       if (block.test(this, this.block.x, this.block.y)) {
         block.draw(this, this.block.x, this.block.y);
       } else {
@@ -34,12 +34,15 @@ export class Board {
   }
 
   tick() {
-    if (this.block !== null && this.block.test(this, this.block.x, this.block.y + 1)) {
+    if (this.block !== null) {
       this.block.draw(this, this.block.x, this.block.y, '.');
-      this.block.y++;
-      this.block.draw(this, this.block.x, this.block.y);
-    } else {
-      this.block = null;
+      if (this.block.test(this, this.block.x, this.block.y + 1)) {
+        this.block.y++;
+        this.block.draw(this, this.block.x, this.block.y);
+      } else {
+        this.block.draw(this, this.block.x, this.block.y);
+        this.block = null;
+      }
     }
   }
 

@@ -53,38 +53,29 @@ export class RotatingShape {
 
     test(board, x, y) {
         let s = this.fullStr;
-        let offset = Math.floor(this.size / 2);
         for (let i = s.length - 1; i >= 0; i--) {   // Start from the end to fail fast
             if (s[i] === '.') {
-                console.log("### Eka");
                 continue;
             }
             let r = y + Math.floor(i / this.size);
-            let c = x - offset + i % this.size;
-            console.log(`R:${r} C:${c} ${board.height}x${board.width}`);
+            let c = x + i % this.size;
             if (r >= board.height || c < 0 || c >= board.width) {
-                console.log("### Out of Bounds");
                 return false;
-            } else if (board.arr[r][c] === '.') {
-                console.log("### Vapaa");
-                return true;
-            } else {
-                console.log("### Ei vapaana");
+            } else if (board.arr[r][c] !== '.') {
                 return false;
             }
         }
-        return false;
+        return true;
     }
 
     draw(board, x, y, char) {
         let s = this.fullStr;
-        let offset = Math.floor(this.size / 2);
         for (let i = s.length - 1; i >= 0; i--) {   // Start from the end to fail fast
             if (s[i] === '.') {
                 continue;
             }
             let r = y + Math.floor(i / this.size);
-            let c = x - offset + i % this.size;
+            let c = x + i % this.size;
             board.arr[r][c] = char ?? s[i];
         }
     }

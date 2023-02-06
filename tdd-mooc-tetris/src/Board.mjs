@@ -58,6 +58,22 @@ export class Board {
     }
   }
 
+  move(direction) { // Directions: -1 = Left, +1 = Right
+    this.block.draw(this, this.x, this.y, '.');
+    if (this.block.test(this, this.x + direction, this.y)) {
+      this.x += direction;
+      this.block.draw(this, this.x, this.y);
+    } else {
+      this.block.draw(this, this.x, this.y);
+    }
+  }
+
+  fall() {
+    while (this.block) {
+      this.tick();
+    }
+  }
+
   hasFalling() {
     return this.block ? true : false;
   }

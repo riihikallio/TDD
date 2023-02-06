@@ -8,12 +8,12 @@ describe("Moving tetrominoes", () => {
         board = new Board(10, 6);
     });
 
-    xit("moves left", () => {
+    it("moves left", () => {
         board.drop(Tetromino.T_SHAPE);
-        board.block.moveLeft();
+        board.move(-1);
 
         expect(board.toString()).to.equalShape(
-            `...T......
+        `...T......
          ..TTT.....
          ..........
          ..........
@@ -23,13 +23,67 @@ describe("Moving tetrominoes", () => {
     });
 
 
+    it("moves right", () => {
+        board.drop(Tetromino.T_SHAPE);
+        board.move(+1);
 
-    // a falling tetromino can be moved left
-    // a falling tetromino can be moved right
-    // a falling tetromino can be moved down
-    // it cannot be moved left beyond the board
-    // it cannot be moved right beyond the board
-    // it cannot be moved down beyond the board (will stop falling)
+        expect(board.toString()).to.equalShape(
+        `.....T....
+         ....TTT...
+         ..........
+         ..........
+         ..........
+         ..........`
+        );
+    });
+
+    it("moves down", () => {
+        board.drop(Tetromino.T_SHAPE);
+        board.fall();
+
+        expect(board.toString()).to.equalShape(
+          `..........
+           ..........
+           ..........
+           ..........
+           ....T.....
+           ...TTT....`
+        );
+    });
+
+    it("doesn't move left off the board", () => {
+        board.drop(Tetromino.T_SHAPE);
+        for (let i = 0; i < 10; i++) {
+            board.move(-1);
+        }
+
+        expect(board.toString()).to.equalShape(
+        `.T........
+         TTT.......
+         ..........
+         ..........
+         ..........
+         ..........`
+        );
+    });
+
+
+    it("doesn't move right off the board", () => {
+        board.drop(Tetromino.T_SHAPE);
+        for (let i = 0; i < 10; i++) {
+            board.move(+1);
+        }
+
+        expect(board.toString()).to.equalShape(
+        `........T.
+         .......TTT
+         ..........
+         ..........
+         ..........
+         ..........`
+        );
+    });
+
     // it cannot be moved left through other blocks
     // it cannot be moved right through other blocks
     // it cannot be moved down through other blocks (will stop falling)

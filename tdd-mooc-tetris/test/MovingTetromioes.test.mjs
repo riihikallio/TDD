@@ -2,6 +2,14 @@ import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 
+let prep = `
+    X........X
+    X........X
+    X........X
+    X........X
+    X........X
+    XXXXXXXXXX`;
+
 describe("Moving tetrominoes", () => {
     let board;
     beforeEach(() => {
@@ -67,7 +75,6 @@ describe("Moving tetrominoes", () => {
         );
     });
 
-
     it("doesn't move right off the board", () => {
         board.drop(Tetromino.T_SHAPE);
         for (let i = 0; i < 10; i++) {
@@ -81,6 +88,18 @@ describe("Moving tetrominoes", () => {
          ..........
          ..........
          ..........`
+        );
+    });
+
+    it("board initialization", () => {
+        board.init(prep);
+        expect(board.toString()).to.equalShape(
+        `X........X
+         X........X
+         X........X
+         X........X
+         X........X
+         XXXXXXXXXX`
         );
     });
 

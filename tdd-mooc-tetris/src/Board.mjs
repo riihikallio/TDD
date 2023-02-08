@@ -21,12 +21,12 @@ export class Board {
   }
 
   init(str) {
-    let tmp1 = str.split(/\s+/);
-    for (let i = 0; i < height; i++) {
-      let tmp2 = str.split();
-      for (let j = 0; j < width; j++) {
-        this.arr[i][j] = tmp2[j];
-      }
+    let rows = str.split(/\s+/);
+    let r = 0;
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i].length !== this.width) { continue; }
+      this.arr[r] = rows[i].split('');
+      r++;
     }
   }
 

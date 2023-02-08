@@ -36,7 +36,7 @@ describe("Moving tetrominoes", () => {
         board.move(+1);
 
         expect(board.toString()).to.equalShape(
-        `.....T....
+            `.....T....
          ....TTT...
          ..........
          ..........
@@ -50,7 +50,7 @@ describe("Moving tetrominoes", () => {
         board.fall();
 
         expect(board.toString()).to.equalShape(
-          `..........
+            `..........
            ..........
            ..........
            ..........
@@ -66,7 +66,7 @@ describe("Moving tetrominoes", () => {
         }
 
         expect(board.toString()).to.equalShape(
-        `.T........
+            `.T........
          TTT.......
          ..........
          ..........
@@ -82,7 +82,7 @@ describe("Moving tetrominoes", () => {
         }
 
         expect(board.toString()).to.equalShape(
-        `........T.
+            `........T.
          .......TTT
          ..........
          ..........
@@ -103,7 +103,50 @@ describe("Moving tetrominoes", () => {
         );
     });
 
-    // it cannot be moved left through other blocks
-    // it cannot be moved right through other blocks
-    // it cannot be moved down through other blocks (will stop falling)
+    it("stops on obstacle on the left", () => {
+        board.init(prep);
+        board.drop(Tetromino.T_SHAPE);
+        for (let i=0; i<5; i++) {
+            board.move(-1);
+        }
+        expect(board.toString()).to.equalShape(
+        `X.T......X
+         XTTT.....X
+         X........X
+         X........X
+         X........X
+         XXXXXXXXXX`
+        );
+    });
+
+    it("stops on obstacle on the right", () => {
+        board.init(prep);
+        board.drop(Tetromino.T_SHAPE);
+        for (let i=0; i<5; i++) {
+            board.move(1);
+        }
+        expect(board.toString()).to.equalShape(
+        `X......T.X
+         X.....TTTX
+         X........X
+         X........X
+         X........X
+         XXXXXXXXXX`
+        );
+    });
+
+    it("stops on obstacle on the bottom", () => {
+        board.init(prep);
+        board.drop(Tetromino.T_SHAPE);
+        board.fall();
+        expect(board.toString()).to.equalShape(
+        `X........X
+         X........X
+         X........X
+         X...T....X
+         X..TTT...X
+         XXXXXXXXXX`
+        );
+    });
+
 });

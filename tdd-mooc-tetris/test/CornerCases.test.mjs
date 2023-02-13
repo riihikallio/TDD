@@ -20,7 +20,7 @@ describe("Corner cases", () => {
         board.drop(Tetromino.T_SHAPE);
         board.move(-1);
         board.tick();
-        board.rotateRight();
+        board.rotate(0);
         board.tick();
 
         expect(board.toString()).to.equalShape(
@@ -33,13 +33,13 @@ describe("Corner cases", () => {
         );
     });
 
-    it("don't rotate if confined", () => {
+    it("don't rotate right if confined", () => {
         board.init(prep);
         board.drop(Tetromino.T_SHAPE);
-        board.rotateRight();
+        board.rotate(0);
         board.tick();
         board.tick();
-        board.rotateRight();
+        board.rotate(0);
 
         expect(board.toString()).to.equalShape(
         `..........
@@ -47,6 +47,25 @@ describe("Corner cases", () => {
          ...XT.X...
          ...XTTX...
          ...XT.X...
+         ...X..X...`
+        );
+    });
+
+    it("don't rotate left if confined", () => {
+        board.init(prep);
+        board.drop(Tetromino.T_SHAPE);
+        board.move(1);
+        board.rotate(1);
+        board.tick();
+        board.tick();
+        board.rotate(1);
+
+        expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ...X.TX...
+         ...XTTX...
+         ...X.TX...
          ...X..X...`
         );
     });

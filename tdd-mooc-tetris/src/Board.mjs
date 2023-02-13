@@ -74,24 +74,22 @@ export class Board {
     }
   }
 
-  rotateRight() {
+  rotate(direction) {   // 0 : right, 1 : left
     this.block.draw(this, this.x, this.y, '.');
-    let rotated = this.block.rotateRight();
+    let rotated = direction ? this.block.rotateLeft() : this.block.rotateRight();
     if (rotated.test(this, this.x, this.y)) {
       this.block = rotated;
+    } else if (rotated.test(this, this.x + 1, this.y)) {
+      console.log("##### Wall kick right");
+      this.block = rotated;
+      this.x += 1;
+    } else if (rotated.test(this, this.x - 1, this.y)) {
+      console.log("##### Wall kick right");
+      this.block = rotated;
+      this.x -= 1;
     }
     this.block.draw(this, this.x, this.y);
   }
-
-  rotateLeft() {
-    this.block.draw(this, this.x, this.y, '.');
-    let rotated = this.block.rotateLeft();
-    if (rotated.test(this, this.x, this.y)) {
-      this.block = rotated;
-    }
-    this.block.draw(this, this.x, this.y);
-  }
-
 
   hasFalling() {
     return this.block ? true : false;

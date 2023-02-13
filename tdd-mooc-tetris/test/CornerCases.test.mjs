@@ -70,4 +70,45 @@ describe("Corner cases", () => {
         );
     });
 
+    it("left wall kick", () => {
+        board.drop(Tetromino.T_SHAPE);
+        board.rotate(0);
+        board.move(-1);
+        board.move(-1);
+        board.move(-1);
+        board.move(-1);
+        board.tick();
+        board.rotate(0);
+
+        expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         TTT.......
+         .T........
+         ..........
+         ..........`
+        );
+    });
+
+    it("right wall kick", () => {
+        board.drop(Tetromino.T_SHAPE);
+        board.rotate(1);
+        board.move(1);
+        board.move(1);
+        board.move(1);
+        board.move(1);
+        board.move(1);
+        board.tick();
+        board.rotate(1);
+
+        expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         .......TTT
+         ........T.
+         ..........
+         ..........`
+        );
+    });
+
 });

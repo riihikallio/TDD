@@ -80,11 +80,9 @@ export class Board {
     if (rotated.test(this, this.x, this.y)) {
       this.block = rotated;
     } else if (rotated.test(this, this.x + 1, this.y)) {
-      console.log("##### Wall kick right");
       this.block = rotated;
       this.x += 1;
     } else if (rotated.test(this, this.x - 1, this.y)) {
-      console.log("##### Wall kick right");
       this.block = rotated;
       this.x -= 1;
     }

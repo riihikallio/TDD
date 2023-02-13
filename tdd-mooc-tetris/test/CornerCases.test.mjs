@@ -3,12 +3,12 @@ import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 
 let prep = `
-    X........X
-    X........X
-    X........X
-    X........X
-    X........X
-    XXXXXXXXXX`;
+    ..........
+    ..........
+    ...X..X...
+    ...X..X...
+    ...X..X...
+    ...X..X...`;
 
 describe("Corner cases", () => {
     let board;
@@ -32,4 +32,23 @@ describe("Corner cases", () => {
          ..........`
         );
     });
+
+    it("don't rotate if confined", () => {
+        board.init(prep);
+        board.drop(Tetromino.T_SHAPE);
+        board.rotateRight();
+        board.tick();
+        board.tick();
+        board.rotateRight();
+
+        expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ...XT.X...
+         ...XTTX...
+         ...XT.X...
+         ...X..X...`
+        );
+    });
+
 });

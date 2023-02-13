@@ -68,7 +68,7 @@ export class RotatingShape {
 
     draw(board, x, y, char) {
         let s = this.fullStr;
-        for (let i = s.length - 1; i >= 0; i--) {   // Start from the end to fail fast
+        for (let i = s.length - 1; i >= 0; i--) {
             if (s[i] === '.') {
                 continue;
             }

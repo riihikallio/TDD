@@ -74,6 +74,25 @@ export class Board {
     }
   }
 
+  rotateRight() {
+    this.block.draw(this, this.x, this.y, '.');
+    let rotated = this.block.rotateRight();
+    if (rotated.test(this, this.x, this.y)) {
+      this.block = rotated;
+    }
+    this.block.draw(this, this.x, this.y);
+  }
+
+  rotateLeft() {
+    this.block.draw(this, this.x, this.y, '.');
+    let rotated = this.block.rotateLeft();
+    if (rotated.test(this, this.x, this.y)) {
+      this.block = rotated;
+    }
+    this.block.draw(this, this.x, this.y);
+  }
+
+
   hasFalling() {
     return this.block ? true : false;
   }

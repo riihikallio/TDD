@@ -66,14 +66,14 @@ export class RotatingShape {
         return true;
     }
 
-    draw(board, x, y, char) {
+    draw(board, char) {
         let s = this.fullStr;
         for (let i = s.length - 1; i >= 0; i--) {
             if (s[i] === '.') {
                 continue;
             }
-            let r = y + Math.floor(i / this.size);
-            let c = x + i % this.size;
+            let r = board.y + Math.floor(i / this.size);
+            let c = board.x + i % this.size;
             board.arr[r][c] = char ?? s[i];
         }
     }

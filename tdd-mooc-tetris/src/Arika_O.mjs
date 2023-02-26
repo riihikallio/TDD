@@ -4,9 +4,10 @@ export class Arika_O extends ArikaShape {
 
     constructor() {
         super();
-        this.size = 2;
+        this.size = 3;
         this.state = 0;
-        this.arr = [['O','O'],
-                    ['O','O']];
+        this.arr = [['.','.','.'],
+                    ['.','O','O'],
+                    ['.','O','O']];
     }
 }

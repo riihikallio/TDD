@@ -20,22 +20,25 @@ describe("The Arika_O shape", () => {
   
     it("initial orientation", () => {
       expect(shape.toString()).to.equalShape(
-        `OO
-         OO`
+        `...
+         .OO
+         .OO`
       );
     });
   
     it("cannot be rotated right/clockwise", () => {
       expect(shape.rotateRight().toString()).to.equalShape(
-        `OO
-         OO`
+        `...
+         .OO
+         .OO`
       );
     });
   
     it("cannot be rotated left/counter-clockwise", () => {
       expect(shape.rotateLeft().toString()).to.equalShape(
-        `OO
-         OO`
+        `...
+         .OO
+         .OO`
       );
     });
 
@@ -43,3 +46,22 @@ describe("The Arika_O shape", () => {
         expect(distinctOrientations(shape).size).to.equal(1);
       });
 });  
+
+describe("When an Arika_O is dropped", () => {
+    let board;
+    beforeEach(() => {
+        board = new Board(10, 6);
+        board.drop(new Arika_O());
+    });
+
+    it("it starts from the top middle", () => {
+        expect(board.toString()).to.equalShape(
+            `..........
+             ....OO....
+             ....OO....
+             ..........
+             ..........
+             ..........`
+            );
+    });
+});

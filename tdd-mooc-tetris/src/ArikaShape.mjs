@@ -12,31 +12,31 @@ export class ArikaShape {
     }
 
     test(board, x, y) {
-        let s = this.fullStr;
-        for (let i = s.length - 1; i >= 0; i--) {   // Start from the end to fail fast
-            if (s[i] === '.') {
-                continue;
-            }
-            let r = y + Math.floor(i / this.size);
-            let c = x + i % this.size;
-            if (r >= board.height || c < 0 || c >= board.width) {
-                return false;
-            } else if (board.arr[r][c] !== '.') {
-                return false;
+        for (let i = this.size - 1; i >= 0; i--) {   // Start from the bottom to fail fast
+            for (let j = this.size - 1; j >= 0; j--) {
+                if (this.arr[i][j] === '.') {
+                    continue;
+                }
+                let c = y + i;
+                let r = x + j;
+                if (r >= board.height || c < 0 || c >= board.width) {
+                    return false;
+                } else if (board.arr[r][c] !== '.') {
+                    return false;
+                }
             }
         }
         return true;
     }
 
     draw(board, char) {
-        let s = this.fullStr;
-        for (let i = s.length - 1; i >= 0; i--) {
-            if (s[i] === '.') {
-                continue;
+        for (let r = 0; r < this.size; r++) {
+            for (let c = 0; c < this.size; c++) {
+                if (this.arr[r][c] === '.') {
+                    continue;
+                }
+                board.arr[board.y + c][board.x + r] = char ?? this.arr[r][c];
             }
-            let r = board.y + Math.floor(i / this.size);
-            let c = board.x + i % this.size;
-            board.arr[r][c] = char ?? s[i];
         }
     }
 

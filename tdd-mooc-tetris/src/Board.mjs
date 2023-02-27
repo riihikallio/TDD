@@ -34,7 +34,7 @@ export class Board {
     if (this.block === null) {
       this.block = block;
       this.y = block.offset ?? 0;
-      this.x = Math.ceil(this.width / 2) - Math.floor(block.size / 2) - 1;
+      this.x = Math.round(this.width / 2) - Math.round(block.size / 2);
       if (block.check(this, this.x, this.y)) {
         block.draw(this);
       } else {

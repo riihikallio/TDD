@@ -49,7 +49,7 @@ export class RotatingShape {
         }
     }
 
-    test(board, x, y) {
+    check(board, x, y) {
         let s = this.fullStr;
         for (let i = s.length - 1; i >= 0; i--) {   // Start from the end to fail fast
             if (s[i] === '.') {

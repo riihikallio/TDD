@@ -33,9 +33,9 @@ export class Board {
   drop(block) {
     if (this.block === null) {
       this.block = block;
-      this.y = 0;
+      this.y = block.offset ?? 0;
       this.x = Math.ceil(this.width / 2) - Math.floor(block.size / 2) - 1;
-      if (block.test(this, this.x, this.y)) {
+      if (block.check(this, this.x, this.y)) {
         block.draw(this);
       } else {
         throw Error("end of game");
@@ -48,7 +48,7 @@ export class Board {
   tick() {
     if (this.block !== null) {
       this.block.draw(this, '.');
-      if (this.block.test(this, this.x, this.y + 1)) {
+      if (this.block.check(this, this.x, this.y + 1)) {
         this.y++;
         this.block.draw(this);
       } else {
@@ -60,7 +60,7 @@ export class Board {
 
   move(direction) { // Directions: -1 = Left, +1 = Right
     this.block.draw(this, '.');
-    if (this.block.test(this, this.x + direction, this.y)) {
+    if (this.block.check(this, this.x + direction, this.y)) {
       this.x += direction;
       this.block.draw(this);
     } else {
@@ -77,12 +77,12 @@ export class Board {
   rotate(direction) {   // 0 : right, 1 : left
     this.block.draw(this, '.');
     let rotated = direction ? this.block.rotateLeft() : this.block.rotateRight();
-    if (rotated.test(this, this.x, this.y)) {
+    if (rotated.check(this, this.x, this.y)) {
       this.block = rotated;
-    } else if (rotated.test(this, this.x + 1, this.y)) {  // Kick right first
+    } else if (rotated.check(this, this.x + 1, this.y)) {  // Kick right first
       this.block = rotated;
       this.x += 1;
-    } else if (rotated.test(this, this.x - 1, this.y)) {  // Kick left
+    } else if (rotated.check(this, this.x - 1, this.y)) {  // Kick left
       this.block = rotated;
       this.x -= 1;
     }

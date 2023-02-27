@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { Arika_O } from "../src/Arika_O.mjs";
+import { Arika_T } from "../src/Arika_T.mjs";
 
 function distinctOrientations(shape) {
     const distinct = new Set();
@@ -15,46 +15,57 @@ function distinctOrientations(shape) {
     return distinct;
   }  
 
-describe("The Arika_O shape", () => {
-    const shape = new Arika_O();
+describe("The Arika_T shape", () => {
+    const shape = new Arika_T();
   
     it("initial orientation", () => {
       expect(shape.toString()).to.equalShape(
-        `OO
-         OO`
+        `...
+         TTT
+         .T.`
       );
     });
   
-    it("cannot be rotated right/clockwise", () => {
+    it("can be rotated right/clockwise", () => {
       expect(shape.rotateRight().toString()).to.equalShape(
-        `OO
-         OO`
+        `.T.
+         TT.
+         .T.`
       );
     });
   
-    it("cannot be rotated left/counter-clockwise", () => {
+    it("can be rotated left/counter-clockwise", () => {
       expect(shape.rotateLeft().toString()).to.equalShape(
-        `OO
-         OO`
+        `.T.
+         .TT
+         .T.`
+      );
+    });
+  
+    it("can be rotated left/counter-clockwise twice", () => {
+      expect(shape.rotateLeft().rotateLeft().toString()).to.equalShape(
+        `...
+         .T.
+         TTT`
       );
     });
 
-    it("has 1 distinct orientation", () => {
-        expect(distinctOrientations(shape).size).to.equal(1);
+    it("has 4 distinct orientation", () => {
+        expect(distinctOrientations(shape).size).to.equal(4);
       });
 });  
 
-describe("When an Arika_O is dropped", () => {
+describe("When an Arika_T is dropped", () => {
     let board;
     beforeEach(() => {
         board = new Board(10, 6);
-        board.drop(new Arika_O());
+        board.drop(new Arika_T());
     });
 
     it("it starts from the top middle", () => {
         expect(board.toString()).to.equalShape(
-            `...OO.....
-             ...OO.....
+            `...TTT....
+             ....T.....
              ..........
              ..........
              ..........

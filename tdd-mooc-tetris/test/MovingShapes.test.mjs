@@ -8,7 +8,7 @@ let prep = `
     X........X
     X........X
     X........X
-    XXXXXXXXXX`;
+    .XXXXXXXX.`;
 
 describe("Moving Arika shapes", () => {
     let board;
@@ -98,7 +98,7 @@ describe("Moving Arika shapes", () => {
          X........X
          X........X
          X........X
-         XXXXXXXXXX`
+         .XXXXXXXX.`
         );
     });
 
@@ -114,7 +114,7 @@ describe("Moving Arika shapes", () => {
          X........X
          X........X
          X........X
-         XXXXXXXXXX`
+         .XXXXXXXX.`
         );
     });
 
@@ -130,7 +130,7 @@ describe("Moving Arika shapes", () => {
          X........X
          X........X
          X........X
-         XXXXXXXXXX`
+         .XXXXXXXX.`
         );
     });
 
@@ -144,7 +144,7 @@ describe("Moving Arika shapes", () => {
          X........X
          X..TTT...X
          X...T....X
-         XXXXXXXXXX`
+         .XXXXXXXX.`
         );
     });
 

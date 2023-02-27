@@ -38,7 +38,7 @@ export class Board {
       if (block.check(this, this.x, this.y)) {
         block.draw(this);
       } else {
-        throw Error("end of game");
+        throw Error("game over");
       }
     } else {
       throw Error("already falling");
@@ -54,6 +54,16 @@ export class Board {
       } else {
         this.block.draw(this);
         this.block = null;
+        // Check for completed rows
+        for (let i = 0; i < this.height; i++) {
+          if (this.arr[i].indexOf('.') >= 0) { continue; }
+          this.arr.splice(i, 1);
+          let tmp = Array(this.width);
+          for (let j = 0; j < this.width; j++) {
+            tmp[j] = '.';
+          }
+          this.arr.unshift(tmp);
+        }
       }
     }
   }

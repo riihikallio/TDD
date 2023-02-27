@@ -1,6 +1,6 @@
 const millisPerDay = 24 * 60 * 60 * 1000;
 
-export function daysUntilChristmas(now) {
+export function daysUntilChristmasWithParam(now) {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const christmasDay = new Date(now.getFullYear(), 12 - 1, 25);
   if (today.getTime() > christmasDay.getTime()) {
@@ -8,4 +8,9 @@ export function daysUntilChristmas(now) {
   }
   const diffMillis = christmasDay.getTime() - today.getTime();
   return Math.floor(diffMillis / millisPerDay);
+}
+
+// Original interface with no tests
+export function daysUntilChristmas() {
+  daysUntilChristmasWithParam(new Date());
 }

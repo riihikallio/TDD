@@ -8,8 +8,6 @@ let data = `Loid,Forger,,Male
 describe("Testable 3: CSV file parsing", () => {
   let result = parsePeopleData(data);
 
-  console.log(`##### ${Object.keys(result[0])}`);
-
   it("number of rows", async () => {
     expect(result.length).to.equal(3);
   });

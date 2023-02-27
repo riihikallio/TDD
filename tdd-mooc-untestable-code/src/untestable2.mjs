@@ -1,9 +1,11 @@
+// The randomness makes testing difficult
 function diceRoll() {
   const min = 1;
   const max = 6;
   return Math.floor(Math.random() * (max + 1 - min) + min);
 }
 
+// I'll separate these two functions, since this doesn't contain randomness
 export function diceHandValue() {
   const die1 = diceRoll();
   const die2 = diceRoll();

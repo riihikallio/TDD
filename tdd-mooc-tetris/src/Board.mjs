@@ -1,3 +1,5 @@
+import { Scoreboard } from "../src/Scoreboard.mjs";
+
 export class Board {
   width;
   height;
@@ -5,11 +7,13 @@ export class Board {
   block;
   x;
   y;
+  scoring;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
     this.block = null;
+    this.scoring = new Scoreboard();
 
     this.arr = Array(height);
     for (let i = 0; i < height; i++) {
@@ -55,8 +59,10 @@ export class Board {
         this.block.draw(this);
         this.block = null;
         // Check for completed rows
+        let rows = 0;
         for (let i = 0; i < this.height; i++) {
           if (this.arr[i].indexOf('.') >= 0) { continue; }
+          rows++;
           this.arr.splice(i, 1);
           let tmp = Array(this.width);
           for (let j = 0; j < this.width; j++) {
@@ -64,6 +70,7 @@ export class Board {
           }
           this.arr.unshift(tmp);
         }
+        this.scoring.update(rows);
       }
     }
   }

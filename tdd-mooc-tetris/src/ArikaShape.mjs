@@ -16,11 +16,14 @@ export class ArikaShape {
         for (let i = this.size - 1; i >= 0; i--) {   // Start from the bottom to fail fast
             for (let j = this.size - 1; j >= 0; j--) {
                 if (this.arr[i][j] === '.') { continue; }
-                let c = y + i;
-                let r = x + j;
+                let r = y + i;
+                let c = x + j;
+                if (r < 0) { continue; }
                 if (r >= board.height || c < 0 || c >= board.width) {
+                    console.log(`########### Out of bounds: r(${r}) c(${c}) i(${i}) j(${j}) y(${y}) x(${x})`);
                     return false;
                 } else if (board.arr[r][c] !== '.') {
+                    console.log("##### Collision")
                     return false;
                 }
             }

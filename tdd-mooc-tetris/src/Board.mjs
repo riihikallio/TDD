@@ -59,6 +59,7 @@ export class Board {
   }
 
   move(direction) { // Directions: -1 = Left, +1 = Right
+    console.log(`##### Moving ${direction}`);
     this.block.draw(this, '.');
     if (this.block.check(this, this.x + direction, this.y)) {
       this.x += direction;

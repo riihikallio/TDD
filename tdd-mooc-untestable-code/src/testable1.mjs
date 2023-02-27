@@ -12,5 +12,5 @@ export function daysUntilChristmasWithParam(now) {
 
 // Original interface with no tests
 export function daysUntilChristmas() {
-  daysUntilChristmasWithParam(new Date());
+  return daysUntilChristmasWithParam(new Date());
 }

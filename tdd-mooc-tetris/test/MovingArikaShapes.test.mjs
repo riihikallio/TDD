@@ -18,7 +18,6 @@ describe("Moving Arika shapes", () => {
 
     it("moves left", () => {
         board.drop(new Arika_T());
-        console.log("####### Arika left");
         board.move(-1);
 
         expect(board.toString()).to.equalShape(
@@ -33,7 +32,6 @@ describe("Moving Arika shapes", () => {
 
     it("moves right", () => {
         board.drop(new Arika_T());
-        console.log("####### Arika right");
         board.move(+1);
 
         expect(board.toString()).to.equalShape(

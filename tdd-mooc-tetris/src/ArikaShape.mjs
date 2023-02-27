@@ -20,10 +20,8 @@ export class ArikaShape {
                 let c = x + j;
                 if (r < 0) { continue; }
                 if (r >= board.height || c < 0 || c >= board.width) {
-                    console.log(`########### Out of bounds: r(${r}) c(${c}) i(${i}) j(${j}) y(${y}) x(${x})`);
                     return false;
                 } else if (board.arr[r][c] !== '.') {
-                    console.log("##### Collision")
                     return false;
                 }
             }
@@ -35,6 +33,7 @@ export class ArikaShape {
         for (let r = 0; r < this.size; r++) {
             for (let c = 0; c < this.size; c++) {
                 if (this.arr[r][c] === '.') { continue; }
+                if (board.y + r < 0) { continue; }  // Top border doesn't prevent rotation
                 board.arr[board.y + r][board.x + c] = char ?? this.arr[r][c];
             }
         }

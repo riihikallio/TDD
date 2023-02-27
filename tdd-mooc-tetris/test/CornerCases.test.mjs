@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { Tetromino } from "../src/Tetromino.mjs";
+import { Arika_T } from "../src/Arika_T.mjs";
 
 let prep = `
     ..........
@@ -17,29 +17,30 @@ describe("Corner cases", () => {
     });
 
     it("move, tick, rotate, tick", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Arika_T());
         board.move(-1);
         board.tick();
-        board.rotate(0);
+        board.rotate(1);
         board.tick();
 
         expect(board.toString()).to.equalShape(
         `..........
-         ..........
          ...T......
          ...TT.....
          ...T......
+         ..........
          ..........`
         );
     });
 
     it("don't rotate right if confined", () => {
         board.init(prep);
-        board.drop(Tetromino.T_SHAPE);
-        board.rotate(0);
+        board.drop(new Arika_T());
+        board.tick();
+        board.rotate(1);
         board.tick();
         board.tick();
-        board.rotate(0);
+        board.rotate(1);
 
         expect(board.toString()).to.equalShape(
         `..........
@@ -53,12 +54,13 @@ describe("Corner cases", () => {
 
     it("don't rotate left if confined", () => {
         board.init(prep);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Arika_T());
+        board.tick();
         board.move(1);
-        board.rotate(1);
+        board.rotate(0);
         board.tick();
         board.tick();
-        board.rotate(1);
+        board.rotate(0);
 
         expect(board.toString()).to.equalShape(
         `..........
@@ -71,41 +73,42 @@ describe("Corner cases", () => {
     });
 
     it("left wall kick", () => {
-        board.drop(Tetromino.T_SHAPE);
-        board.rotate(0);
+        board.drop(new Arika_T());
+        board.tick();
+        board.rotate(1);
         board.move(-1);
         board.move(-1);
         board.move(-1);
         board.move(-1);
         board.tick();
-        board.rotate(0);
+        board.rotate(1);
 
         expect(board.toString()).to.equalShape(
         `..........
          ..........
-         TTT.......
          .T........
+         TTT.......
          ..........
          ..........`
         );
     });
 
     it("right wall kick", () => {
-        board.drop(Tetromino.T_SHAPE);
-        board.rotate(1);
+        board.drop(new Arika_T());
+        board.rotate(0);
         board.move(1);
         board.move(1);
         board.move(1);
         board.move(1);
         board.move(1);
         board.tick();
-        board.rotate(1);
+        board.rotate(0);
 
         expect(board.toString()).to.equalShape(
         `..........
-         ..........
-         .......TTT
          ........T.
+         .......TTT
+         ..........
          ..........
          ..........`
         );

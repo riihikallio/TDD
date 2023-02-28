@@ -38,10 +38,10 @@ describe("Gilded Rose", () => {
     expect(items[0].quality).to.equal(-1, "Quality mismatch");
   });
 
-  it("should return (Sulfuras, 1, 1) as (-2, 3)", () => {
-    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", -1, -1)]);
+  it("should return (Sulfuras, 1, 1) as (-1, -1)", () => {
+    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 1, 1)]);
     const items = gildedRose.updateQuality();
-    expect(items[0].sellIn).to.equal(-1, "SellIn mismatch");
-    expect(items[0].quality).to.equal(-1, "Quality mismatch");
+    expect(items[0].sellIn).to.equal(1, "SellIn mismatch");
+    expect(items[0].quality).to.equal(1, "Quality mismatch");
   });
 });

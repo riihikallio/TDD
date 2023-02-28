@@ -21,7 +21,7 @@
     "npm": ">=7"
   },
   "scripts": {
-    "test": "mocha --recursive test/**/*.test.mjs",
+    "test": "mocha --recursive test/**/*.test.mjs && git commit --all --message=\"tcr: tests pass\"",
     "autotest": "npm run test -- --watch",
     "coverage": "c8 npm run test",
     "mutation": "stryker run",

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Item, Shop } from "../src/gilded_rose.mjs";
+import { Item, Shop } from "../src/gilded_rose0.mjs";
 
 const prods = ["Something else",
                "Aged Brie",

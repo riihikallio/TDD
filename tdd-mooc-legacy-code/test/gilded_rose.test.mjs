@@ -30,10 +30,13 @@ const expected = [[-2,-3],[-2,-2],[-2,-1],[-2,0],[-2,0],[-2,45],[-2,46],[-2,47],
 
 describe("Gilded Rose", () => {
   it("item constructor", () => {
-    const item = new Item("foo", 1, 1);
+    const item = new Item("foo", 1, 2);
     expect(item).to.have.property("name");
+    expect(item.name).to.equal("foo");
     expect(item).to.have.property("sellIn");
+    expect(item.sellIn).to.equal(1);
     expect(item).to.have.property("quality");
+    expect(item.quality).to.equal(2);
   })
 
   it("shop constructor", () => {

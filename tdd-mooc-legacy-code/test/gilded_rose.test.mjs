@@ -29,6 +29,11 @@ const expected = [[-2,-3],[-2,-2],[-2,-1],[-2,0],[-2,0],[-2,45],[-2,46],[-2,47],
 [10,49],[10,50],[11,-3],[11,-2],[11,-1],[11,0],[11,1],[11,47],[11,48],[11,49],[11,50]];
 
 describe("Gilded Rose", () => {
+  it("shop constructor", () => {
+    const shop = new Shop();
+    expect(shop).to.have.property("items");
+  })
+
   let c = 0;
   it("run all", () => {
     for (let prod of prods) {

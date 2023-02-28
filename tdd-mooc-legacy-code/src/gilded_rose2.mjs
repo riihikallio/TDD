@@ -8,7 +8,9 @@ export class Item {
 
 function updateBrie(item) {
   item.sellIn--;
-  if (item.quality < 50) { item.quality++; }
+  item.quality++;
+  if (item.sellIn < 0) { item.quality++; }
+  if (item.quality > 50) { item.quality = 50; }
 }
 
 function updatePass(item) {
@@ -19,13 +21,11 @@ function updatePass(item) {
   } else {
     item.quality++;
     // Increase value faster closer to concert
-    if (item.sellIn <= 10) {
+    if (item.sellIn < 10) {
       item.quality++;
-      if (item.sellIn <= 5) {
-        item.quality++;
-      }
+      if (item.sellIn < 5) { item.quality++; }
     }
-    if (item.value > 50) { item.value = 50; }
+    if (item.quality > 50) { item.quality = 50; }
   }
 }
 
@@ -33,9 +33,7 @@ function updateConjured(item) {
   item.sellIn--;
   item.quality -= 2;
   // Decrease overdue items' value
-  if (item.sellIn < 0) {
-    item.quality -= 2;
-  }
+  if (item.sellIn < 0) { item.quality -= 2; }
   if (item.value < 0) { item.value = 0; }
 }
 

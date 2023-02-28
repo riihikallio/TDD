@@ -14,10 +14,8 @@ export class Shop {
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name != "Aged Brie" && this.items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-            this.items[i].quality--;
-          }
+        if (this.items[i].quality > 0 && this.items[i].name != "Sulfuras, Hand of Ragnaros") {
+          this.items[i].quality--;
         }
       } else {
         if (this.items[i].quality < 50) {

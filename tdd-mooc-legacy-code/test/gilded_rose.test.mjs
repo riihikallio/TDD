@@ -23,10 +23,10 @@ describe("Gilded Rose", () => {
   });
 
   it("should return (foo, -1, -1) as (-2, 3)", () => {
-    const gildedRose = new Shop([new Item("foo", -5, -5)]);
+    const gildedRose = new Shop([new Item("foo", -1, -1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).to.equal("foo", "Name mismatch");
-    expect(items[0].sellIn).to.equal(-6, "SellIn mismatch");
-    expect(items[0].quality).to.equal(-5, "Quality mismatch");
+    expect(items[0].sellIn).to.equal(-2, "SellIn mismatch");
+    expect(items[0].quality).to.equal(-1, "Quality mismatch");
   });
 });

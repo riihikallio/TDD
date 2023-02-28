@@ -43,6 +43,7 @@ describe("Gilded Rose", () => {
     const shop = new Shop();
     expect(shop).to.have.property("items");
     expect(shop.items).to.be.an.instanceof(Array);
+    expect(shop.items.length).to.equal(0);
   })
 
   it("shop constructor with one item", () => {

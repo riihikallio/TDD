@@ -34,8 +34,13 @@ describe("Gilded Rose", () => {
     expect(shop).to.have.property("items");
   })
 
+  it("shop constructor with one item", () => {
+    const shop = new Shop([new Item("foo", 1, 1)]);
+    expect(shop.items.length).to.equal(1);
+  })
+
   let c = 0;
-  it("run all", () => {
+  it("run updateQuality", () => {
     for (let prod of prods) {
       for (let sellIn of sellIns) {
         for (let quality of quals) {

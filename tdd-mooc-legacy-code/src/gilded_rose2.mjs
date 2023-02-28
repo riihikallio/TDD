@@ -9,7 +9,9 @@ export class Item {
 function updateBrie(item) {
   item.sellIn--;
   item.quality++;
+  // Double the value increase after due date
   if (item.sellIn < 0) { item.quality++; }
+  // Cap value to 50
   if (item.quality > 50) { item.quality = 50; }
 }
 
@@ -25,6 +27,7 @@ function updatePass(item) {
       item.quality++;
       if (item.sellIn < 5) { item.quality++; }
     }
+    // Cap value to 50
     if (item.quality > 50) { item.quality = 50; }
   }
 }
@@ -34,6 +37,7 @@ function updateConjured(item) {
   item.quality -= 2;
   // Decrease overdue items' value
   if (item.sellIn < 0) { item.quality -= 2; }
+  // Cap value to zero
   if (item.value < 0) { item.value = 0; }
 }
 
@@ -44,6 +48,7 @@ function updateGeneric(item) {
   if (item.sellIn < 0) {
     item.quality--;
   }
+  // Cap value to zero
   if (item.quality < 0) { item.quality = 0; }
 }
 
@@ -62,6 +67,7 @@ export class Shop {
           updatePass(this.items[i]);
           break;
         case "Sulfuras, Hand of Ragnaros":
+          // Do nothing
           break;
         case "Conjured":
           updateConjured(this.items[i]);

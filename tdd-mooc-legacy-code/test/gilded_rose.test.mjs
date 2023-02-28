@@ -1,47 +1,48 @@
 import { expect } from "chai";
 import { Item, Shop } from "../src/gilded_rose.mjs";
-/* 
-"Aged Brie"
-"Backstage passes to a TAFKAL80ETC concert"
-"Sulfuras, Hand of Ragnaros"
- */
+
+const prods = ["Something else",
+               "Aged Brie",
+               "Backstage passes to a TAFKAL80ETC concert",
+               "Sulfuras, Hand of Ragnaros"
+              ];
+const sellIns = [-1, 0, 1, 5, 6, 10, 11];
+const quals = [-3, -2, -1, 0, 1, 47, 48, 49, 50];
+
+const expected = [[-2, -3],[-2, -2],[-2, -1],[-2, 0],[-2, 0],[-2, 45],[-2, 46],[-2, 47],[-2, 48],[-1, -3],[-1, -2],
+[-1, -1],[-1, 0],[-1, 0],[-1, 45],[-1, 46],[-1, 47],[-1, 48],[0, -3],[0, -2],[0, -1],[0, 0],[0, 0],[0, 46],[0, 47],
+[0, 48],[0, 49],[4, -3],[4, -2],[4, -1],[4, 0],[4, 0],[4, 46],[4, 47],[4, 48],[4, 49],[5, -3],[5, -2],[5, -1],[5, 0],
+[5, 0],[5, 46],[5, 47],[5, 48],[5, 49],[9, -3],[9, -2],[9, -1],[9, 0],[9, 0],[9, 46],[9, 47],[9, 48],[9, 49],[10, -3],
+[10, -2],[10, -1],[10, 0],[10, 0],[10, 46],[10, 47],[10, 48],[10, 49],[-2, -1],[-2, 0],[-2, 1],[-2, 2],[-2, 3],
+[-2, 49],[-2, 50],[-2, 50],[-2, 50],[-1, -1],[-1, 0],[-1, 1],[-1, 2],[-1, 3],[-1, 49],[-1, 50],[-1, 50],[-1, 50],
+[0, -2],[0, -1],[0, 0],[0, 1],[0, 2],[0, 48],[0, 49],[0, 50],[0, 50],[4, -2],[4, -1],[4, 0],[4, 1],[4, 2],[4, 48],
+[4, 49],[4, 50],[4, 50],[5, -2],[5, -1],[5, 0],[5, 1],[5, 2],[5, 48],[5, 49],[5, 50],[5, 50],[9, -2],[9, -1],[9, 0],
+[9, 1],[9, 2],[9, 48],[9, 49],[9, 50],[9, 50],[10, -2],[10, -1],[10, 0],[10, 1],[10, 2],[10, 48],[10, 49],[10, 50],
+[10, 50],[-2, 0],[-2, 0],[-2, 0],[-2, 0],[-2, 0],[-2, 0],[-2, 0],[-2, 0],[-2, 0],[-1, 0],[-1, 0],[-1, 0],[-1, 0],
+[-1, 0],[-1, 0],[-1, 0],[-1, 0],[-1, 0],[0, 0],[0, 1],[0, 2],[0, 3],[0, 4],[0, 50],[0, 50],[0, 50],[0, 50],[4, 0],
+[4, 1],[4, 2],[4, 3],[4, 4],[4, 50],[4, 50],[4, 50],[4, 50],[5, -1],[5, 0],[5, 1],[5, 2],[5, 3],[5, 49],[5, 50],
+[5, 50],[5, 50],[9, -1],[9, 0],[9, 1],[9, 2],[9, 3],[9, 49],[9, 50],[9, 50],[9, 50],[10, -2],[10, -1],[10, 0],[10, 1],
+[10, 2],[10, 48],[10, 49],[10, 50],[10, 50],[-1, -3],[-1, -2],[-1, -1],[-1, 0],[-1, 1],[-1, 47],[-1, 48],[-1, 49],
+[-1, 50],[0, -3],[0, -2],[0, -1],[0, 0],[0, 1],[0, 47],[0, 48],[0, 49],[0, 50],[1, -3],[1, -2],[1, -1],[1, 0],[1, 1],
+[1, 47],[1, 48],[1, 49],[1, 50],[5, -3],[5, -2],[5, -1],[5, 0],[5, 1],[5, 47],[5, 48],[5, 49],[5, 50],[6, -3],[6, -2],
+[6, -1],[6, 0],[6, 1],[6, 47],[6, 48],[6, 49],[6, 50],[10, -3],[10, -2],[10, -1],[10, 0],[10, 1],[10, 47],[10, 48],
+[10, 49],[10, 50],[11, -3],[11, -2],[11, -1],[11, 0],[11, 1],[11, 47],[11, 48],[11, 49],[11, 50]];
+
 describe("Gilded Rose", () => {
-  it("should return foo (0, 0) as (-1, 0)", () => {
-    const gildedRose = new Shop([new Item("foo", 0, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal("foo", "Name mismatch");
-    expect(items[0].sellIn).to.equal(-1, "SellIn mismatch");
-    expect(items[0].quality).to.equal(0, "Quality mismatch");
-  });
-
-  it("should return foo (1, 0) as (0, 0)", () => {
-    const gildedRose = new Shop([new Item("foo", 1, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal("foo", "Name mismatch");
-    expect(items[0].sellIn).to.equal(0, "SellIn mismatch");
-    expect(items[0].quality).to.equal(0, "Quality mismatch");
-  });
-
-  it("should return foo (0, 1) as (-1, 0)", () => {
-    const gildedRose = new Shop([new Item("foo", 0, 1)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal("foo", "Name mismatch");
-    expect(items[0].sellIn).to.equal(-1, "SellIn mismatch");
-    expect(items[0].quality).to.equal(0, "Quality mismatch");
-  });
-
-  it("should return foo (-1, -1) as (-2, 3)", () => {
-    const gildedRose = new Shop([new Item("foo", -1, -1)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal("foo", "Name mismatch");
-    expect(items[0].sellIn).to.equal(-2, "SellIn mismatch");
-    expect(items[0].quality).to.equal(-1, "Quality mismatch");
-  });
-
-  it("should return Sulfuras (1, 1) as (1, 1)", () => {
-    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", -1, -1)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].sellIn).to.equal(-1, "SellIn mismatch");
-    expect(items[0].quality).to.equal(-1, "Quality mismatch");
+  let c = 0;
+  it("run all", () => {
+    for (let prod of prods) {
+      for (let sellIn of sellIns) {
+        for (let quality of quals) {
+          const gildedRose = new Shop([new Item(prod, sellIn, quality)]);
+          const results = gildedRose.updateQuality();
+          expect(results[0].name).to.equal(prod, "Name mismatch");
+          expect(results[0].sellIn).to.equal(expected[c][0], "SellIn mismatch");
+          expect(results[0].quality).to.equal(expected[c][1], "Quality mismatch");
+          //console.log(`[${results[0].sellIn}, ${results[0].quality}],`);
+          c++;
+        }
+      }
+    }
   });
 });

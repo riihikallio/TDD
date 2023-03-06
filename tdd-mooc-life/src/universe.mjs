@@ -1,4 +1,9 @@
-export function sum(a, b) {
-  return a + b;
+export class Universe {
+
+  unpackLine(packed) {
+    let found = packed.match(/(\d*)(\w)(!?)/);
+    let result = "#".repeat(3);
+    return result;
+  }
 }
 

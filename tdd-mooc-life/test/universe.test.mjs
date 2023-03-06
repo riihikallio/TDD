@@ -1,8 +1,10 @@
 import { expect } from "chai";
-import { sum } from "../src/example.mjs";
+import { Universe } from "../src/universe.mjs";
 
 describe("Example test fixture", () => {
-  it("Example test", () => {
-    expect(sum(1, 2)).to.equal(3);
+  let uni = new Universe();
+
+  it("Simple line", () => {
+    expect(uni.unpackLine("3o")).to.equal("###");
   });
 });

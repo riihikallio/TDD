@@ -5,6 +5,6 @@ describe("Example test fixture", () => {
   let uni = new Universe();
 
   it("Simple line", () => {
-    expect(uni.unpackLine("3o")).to.equal("###");
+    expect(uni.unpackLine("4o")).to.equal("####");
   });
 });

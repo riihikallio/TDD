@@ -12,4 +12,8 @@ describe("Unpack line", () => {
     expect(uni.unpackLine("4ob!")).to.equal("oooob");
   });
 
+  it("More complex sequence", () => {
+    expect(uni.unpackLine("4o2bo!")).to.equal("oooobbo");
+  });
+
 });

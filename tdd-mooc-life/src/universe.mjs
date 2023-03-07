@@ -114,14 +114,25 @@ export class Universe {
   }
 
 tick() {
-  let r1 = "";
-  let r2 = "";
+  let tmp = "";
+  let tmps = [];
   this.expand();
+  console.log(`(${this.height}, ${this.width})`);
   for (let i = 0; i < this.height; i++) {
     for (let j = 0; j < this.width; j++) {
       let val = this.value(i, j);
+      if (val === 3) {
+        tmp += "#"; 
+      } else if (val === 4) { 
+        tmp += this.arr[i][j]; 
+      } else {
+        tmp += " ";
+      }
     }
+    tmps.push(tmp);
+    tmp = "";
   }
+  this.arr = tmps;
 }
 
   toString() {

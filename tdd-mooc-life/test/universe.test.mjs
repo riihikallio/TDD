@@ -150,13 +150,12 @@ o$o$o!`;
     expect(uni.toString()).to.equal(result);
   });
 
-  it("Glider", () => {
+  it("Glider 1 tick", () => {
     let data = `x = 3, y = 3, rule = B3/S23
 bob$2bo$3o!`;
     let uni = new Universe(data);
-    let result = "   \n   \n###\n   \n   ";
     uni.tick();
-    expect(uni.toString()).to.equal(result);
+    expect(uni.encode()).to.equal("x = 5, y = 5\n5b$5b$2bobob$3b2ob$3bob!");
   });
 
 })

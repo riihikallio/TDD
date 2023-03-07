@@ -104,11 +104,13 @@ export class Universe {
   }
 
   expand() {
+    // Expand left and right edges
     for (let i = 0; i < this.height; i++) {
       this.arr[i] = " " + this.arr[i] + " ";
     }
     this.width += 2;
     this.height += 2;
+    // Add an empty row at top and bottom
     this.arr.unshift(" ".repeat(this.width));
     this.arr.push(" ".repeat(this.width));
   }
@@ -117,7 +119,7 @@ export class Universe {
     for (let r = 0; r < rounds; r++) {
       let tmp = "";
       let tmps = [];
-      this.expand();
+      this.expand();  // The universe expands on every tick
       for (let i = 0; i < this.height; i++) {
         for (let j = 0; j < this.width; j++) {
           let val = this.value(i, j);

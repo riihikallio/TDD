@@ -106,3 +106,15 @@ describe("Value", () => {
   });
 
 })
+
+describe("Expand", () => {
+  it("Square", () => {
+    let data = `x = 3, y = 2
+3o$3o!`;
+    let uni = new Universe(data);
+    let result = "     \n ### \n ### \n     ";
+    uni.expand();
+    expect(uni.toString()).to.equal(result);
+  });
+
+})

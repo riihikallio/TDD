@@ -89,15 +89,15 @@ export class Universe {
 
   value(x, y) {
     let sum = 0;
-    let tuples = [[1,1],
-                  [1,0],
-                  [1,-1],
-                  [0,1],
-                  [0,0],
-                  [0,-1],
-                  [-1,1],
-                  [-1,0],
-                  [-1,-1]];
+    let tuples = [[1, 1],
+    [1, 0],
+    [1, -1],
+    [0, 1],
+    [0, 0],
+    [0, -1],
+    [-1, 1],
+    [-1, 0],
+    [-1, -1]];
     for (let t of tuples) {
       let x0 = x + t[0];
       let y0 = y + t[1];
@@ -105,6 +105,16 @@ export class Universe {
       sum += (this.arr[y0][x0] === "#") ? 1 : 0;
     }
     return sum;
+  }
+
+  expand() {
+    for (let i = 0; i < this.height; i++) {
+      this.arr[i] = " " + this.arr[i] + " ";
+    }
+    this.width += 2;
+    this.height += 2;
+    this.arr.unshift(" ".repeat(this.width));
+    this.arr.push(" ".repeat(this.width));
   }
 }
 

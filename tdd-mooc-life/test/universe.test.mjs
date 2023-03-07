@@ -102,7 +102,9 @@ describe("Value", () => {
 
   it("Three", () => {
     let uni = new Universe("x=3,y=2\nbob$obo!");
-    expect(uni.value(1, 1)).to.equal(3);
+    expect(uni.value(1, 1)).to.equal(3, "(1, 1)");
+    expect(uni.value(0, 0)).to.equal(2, "(0, 0)");
+    expect(uni.value(0, 1)).to.equal(2, "(-1, -1)");
   });
 
 })

@@ -158,5 +158,14 @@ bob$2bo$3o!`;
     expect(uni.encode()).to.equal("x = 5, y = 5\n5b$5b$2bobob$3b2ob$3bob!");
   });
 
+  it("Glider 2 ticks", () => {
+    let data = `x = 3, y = 3, rule = B3/S23
+bob$2bo$3o!`;
+    let uni = new Universe(data);
+    uni.tick(2);
+    expect(uni.encode()).to.equal("x = 7, y = 7\n7b$7b$7b$5bob$3bobob$4b2ob$7b!");
+    console.log(uni.toString());
+  });
+
 })
 

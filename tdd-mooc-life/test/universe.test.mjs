@@ -84,3 +84,16 @@ describe("ToString", () => {
   });
 
 })
+
+
+describe("Encoding", () => {
+
+  it("Simple case", () => {
+    let key = "x = 2, y = 2\n2o$2o!";
+    let uni = new Universe(key);
+    uni.height = 2;
+    uni.width = 2;
+    expect(uni.encode()).to.equal(key);
+  });
+
+})

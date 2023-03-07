@@ -27,7 +27,7 @@ export class Universe {
     let done = false;
     let tmp;
     for (let row = 0; row < rows.length; row++) {
-      [ tmp, done ] = this.unpackLine(rows[row]);
+      [tmp, done] = this.unpackLine(rows[row]);
       this.arr[row] = tmp;
       if (done) { break; }
     }
@@ -45,12 +45,42 @@ export class Universe {
       char = (found[2] === "o") ? "#" : " ";
       result += char.repeat(count);
       packed = packed.slice(found[0].length);
-      if (found[3]) { 
+      if (found[3]) {
         done = true;
-        break; }
+        break;
+      }
     }
     result = result.concat(" ".repeat(this.width - result.length)); // Fill line ends
-    return [ result, done ];
+    return [result, done];
+  }
+
+  encode() {
+    let result = "x = " + this.width + ", y = " + this.height + "\n";
+    for (let i = 0; i < this.height; i++) {
+      let cur = this.arr[i][0];
+      let count = 1;
+      for (let j = 0; j < this.width; j++) {
+        if (cur !== this.arr[i][j]) {
+          if (count > 1) { result += count; }
+          result += (cur === "#") ? "o" : "b";
+          cur = this.arr[i][j];
+          count = 1;
+        } else {
+          count++;
+        }
+        if (j === this.width - 1) {
+          count--;
+          if (count > 1) { result += count; }
+          result += (cur === "#") ? "o" : "b";
+          if (i === this.height - 1) {
+            result += "!";
+          } else {
+            result += "$";
+          }
+        }
+      }
+    }
+    return result;
   }
 
   toString() {

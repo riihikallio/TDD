@@ -73,3 +73,14 @@ x = 6, y = 2
   });
 
 });
+
+describe("ToString", () => {
+
+  it("Simple case", () => {
+    let uni = new Universe("2ob3o$o4bo!");
+    let result = `## ###
+#    #`;
+    expect(uni.toString()).to.equal(result);
+  });
+
+})

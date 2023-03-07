@@ -28,7 +28,7 @@ export class Universe {
     let tmp;
     for (let row = 0; row < rows.length; row++) {
       [ tmp, done ] = this.unpackLine(rows[row]);
-      this.arr.push(tmp);
+      this.arr[row] = tmp;
       if (done) { break; }
     }
   }
@@ -51,6 +51,10 @@ export class Universe {
     }
     result = result.concat(" ".repeat(this.width - result.length)); // Fill line ends
     return [ result, done ];
+  }
+
+  toString() {
+    return this.arr.join("\n");
   }
 }
 

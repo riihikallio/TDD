@@ -86,14 +86,14 @@ export class Universe {
   value(r, c) {
     let sum = 0;
     let tuples = [[1, 1],
-                  [1, 0],
-                  [1, -1],
-                  [0, 1],
-                  [0, 0],
-                  [0, -1],
-                  [-1, 1],
-                  [-1, 0],
-                  [-1, -1]];
+    [1, 0],
+    [1, -1],
+    [0, 1],
+    [0, 0],
+    [0, -1],
+    [-1, 1],
+    [-1, 0],
+    [-1, -1]];
     for (let t of tuples) {
       let r0 = r + t[0];
       let c0 = c + t[1];
@@ -113,26 +113,28 @@ export class Universe {
     this.arr.push(" ".repeat(this.width));
   }
 
-tick() {
-  let tmp = "";
-  let tmps = [];
-  this.expand();
-  for (let i = 0; i < this.height; i++) {
-    for (let j = 0; j < this.width; j++) {
-      let val = this.value(i, j);
-      if (val === 3) {
-        tmp += "#"; 
-      } else if (val === 4) { 
-        tmp += this.arr[i][j]; 
-      } else {
-        tmp += " ";
+  tick(rounds = 1) {
+    for (let r = 0; r < rounds; r++) {
+      let tmp = "";
+      let tmps = [];
+      this.expand();
+      for (let i = 0; i < this.height; i++) {
+        for (let j = 0; j < this.width; j++) {
+          let val = this.value(i, j);
+          if (val === 3) {
+            tmp += "#";
+          } else if (val === 4) {
+            tmp += this.arr[i][j];
+          } else {
+            tmp += " ";
+          }
+        }
+        tmps.push(tmp);
+        tmp = "";
       }
+      this.arr = tmps;
     }
-    tmps.push(tmp);
-    tmp = "";
   }
-  this.arr = tmps;
-}
 
   toString() {
     return this.arr.join("\n");

@@ -21,6 +21,7 @@ export class Universe {
     }
     rle.replace(/\w/, '');
 
+    // Read RLE data
     this.arr = [];
     rows = rle.split("$");
     let done = false;
@@ -40,16 +41,15 @@ export class Universe {
     let done = false;
     while (packed.length > 0) {
       found = packed.match(/(\d*)(\w)(!?)/);
-//      console.log("Found: ", found);
       count = parseInt(found[1]) || 1;
       char = (found[2] === "o") ? "#" : " ";
       result += char.repeat(count);
       packed = packed.slice(found[0].length);
       if (found[3]) { 
-//        console.log("Breaking: ", found[3]);
         done = true;
         break; }
     }
+    result = result.concat(" ".repeat(this.width - result.length)); // Fill line ends
     return [ result, done ];
   }
 }

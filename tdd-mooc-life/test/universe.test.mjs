@@ -61,4 +61,15 @@ x = 16, y = 12
     expect(uni.height).to.equal(12, "Height mismatch");
   });
 
+  it("Allow uneven lines", () => {
+    let data = `#C Jabba
+#C Dabba
+x = 6, y = 2
+2ob3o$o2bo!`;
+    let uni = new Universe(data);
+    let result = ["## ###",
+                  "#  #  "];
+    expect(uni.arr).to.eql(result);
+  });
+
 });

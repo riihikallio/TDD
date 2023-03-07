@@ -131,4 +131,13 @@ describe("Tick", () => {
     expect(uni.toString()).to.equal(result);
   });
 
+  it("Blinker", () => {
+    let data = `x = 1, y = 3
+o$o$o!`;
+    let uni = new Universe(data);
+    let result = "   \n   \n###\n   \n   ";
+    uni.tick();
+    expect(uni.toString()).to.equal(result);
+  });
+
 })

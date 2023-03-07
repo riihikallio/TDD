@@ -54,11 +54,11 @@ describe("Parsing", () => {
   it("Parse X and Y", () => {
     let data = `#C Jabba
 #C Dabba
-x=6,y=2
+x = 16, y = 12
 2ob3o$o4bo!`;
     let uni = new Universe(data);
-    expect(uni.width).to.equal(6, "Width mismatch");
-    expect(uni.height).to.equal(2, "Height mismatch");
+    expect(uni.width).to.equal(16, "Width mismatch");
+    expect(uni.height).to.equal(12, "Height mismatch");
   });
 
 });

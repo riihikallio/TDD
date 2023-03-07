@@ -4,18 +4,17 @@ export class Universe {
   height;
 
   constructor(str) {
-    if (!str) { return; } // simple tests
+    if (!str) { return; } // for simple tests
 
     // Read header
     let rle = "";
     let rows = str.split("\n");
     for (let row of rows) {
       if (row.match(/^#/)) { continue; }  // Skip comments
-      let match = row.match(/[xX]=(\d+),[yY]=(\d+)/);
+      let match = row.match(/\s*[xX]\s*=\s*(\d+),\s*[yY]\s*=\s*(\d+)/);
       if (match) {
         this.width = parseInt(match[1]);
         this.height = parseInt(match[2]);
-        console.log("Dims: ", this.width, this.height, match)
         continue;
       }
       rle += row;

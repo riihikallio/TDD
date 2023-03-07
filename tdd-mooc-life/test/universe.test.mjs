@@ -5,15 +5,15 @@ describe("Unpack line", () => {
   let uni = new Universe();
 
   it("Simple sequence", () => {
-    expect(uni.unpackLine("4o!")).to.equal("oooo");
+    expect(uni.unpackLine("4o")).to.equal("####");
   });
 
   it("Complex sequence", () => {
-    expect(uni.unpackLine("4ob!")).to.equal("oooob");
+    expect(uni.unpackLine("4ob")).to.equal("#### ");
   });
 
   it("More complex sequence", () => {
-    expect(uni.unpackLine("4o2bo!")).to.equal("oooobbo");
+    expect(uni.unpackLine("4o2bo")).to.equal("####  #");
   });
 
 });

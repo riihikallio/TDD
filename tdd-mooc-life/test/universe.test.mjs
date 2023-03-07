@@ -71,6 +71,16 @@ x = 6, y = 2
     expect(uni.arr).to.eql(result);
   });
 
+  it("Multiline", () => {
+    let data = `x = 6, y = 2
+2ob3o$
+o2bo!`;
+    let uni = new Universe(data);
+    let result = ["## ###",
+                  "#  #  "];
+    expect(uni.arr).to.eql(result);
+  });
+
 });
 
 describe("ToString", () => {
@@ -140,4 +150,14 @@ o$o$o!`;
     expect(uni.toString()).to.equal(result);
   });
 
+  it("Glider", () => {
+    let data = `x = 3, y = 3, rule = B3/S23
+bob$2bo$3o!`;
+    let uni = new Universe(data);
+    let result = "   \n   \n###\n   \n   ";
+    uni.tick();
+    expect(uni.toString()).to.equal(result);
+  });
+
 })
+

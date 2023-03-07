@@ -83,7 +83,6 @@ export class Universe {
     return result;
   }
 
-  
   value(x, y) {
     let sum = 0;
     let tuples = [[1, 1],
@@ -113,8 +112,13 @@ export class Universe {
     this.arr.unshift(" ".repeat(this.width));
     this.arr.push(" ".repeat(this.width));
   }
+
+tick() {
+  this.expand();
 }
 
-toString() {
-  return this.arr.join("\n");
+  toString() {
+    return this.arr.join("\n");
+  }
+
 }

@@ -123,10 +123,10 @@ describe("Expand", () => {
 
 describe("Tick", () => {
   it("Square", () => {
-    let data = `x = 3, y = 2
-3o$3o!`;
+    let data = `x = 2, y = 2
+2o$2o!`;
     let uni = new Universe(data);
-    let result = "     \n ### \n ### \n     ";
+    let result = "    \n ## \n ## \n    ";
     uni.tick();
     expect(uni.toString()).to.equal(result);
   });

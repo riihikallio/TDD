@@ -22,7 +22,7 @@ export class Universe {
     rle.replace(/\w/, '');
 
     // Read RLE data
-    this.arr = [];
+    this.arr = Array(this.height);
     rows = rle.split("$");
     let done = false;
     let tmp;

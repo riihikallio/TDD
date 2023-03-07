@@ -83,22 +83,22 @@ export class Universe {
     return result;
   }
 
-  value(x, y) {
+  value(r, c) {
     let sum = 0;
     let tuples = [[1, 1],
-    [1, 0],
-    [1, -1],
-    [0, 1],
-    [0, 0],
-    [0, -1],
-    [-1, 1],
-    [-1, 0],
-    [-1, -1]];
+                  [1, 0],
+                  [1, -1],
+                  [0, 1],
+                  [0, 0],
+                  [0, -1],
+                  [-1, 1],
+                  [-1, 0],
+                  [-1, -1]];
     for (let t of tuples) {
-      let x0 = x + t[0];
-      let y0 = y + t[1];
-      if (x0 < 0 || y0 < 0 || x0 > this.width - 1 || y0 > this.height - 1) { continue; }
-      sum += (this.arr[y0][x0] === "#") ? 1 : 0;
+      let r0 = r + t[0];
+      let c0 = c + t[1];
+      if (r0 < 0 || c0 < 0 || r0 > this.height - 1 || c0 > this.width - 1) { continue; }
+      sum += (this.arr[r0][c0] === "#") ? 1 : 0;
     }
     return sum;
   }
@@ -114,7 +114,14 @@ export class Universe {
   }
 
 tick() {
+  let r1 = "";
+  let r2 = "";
   this.expand();
+  for (let i = 0; i < this.height; i++) {
+    for (let j = 0; j < this.width; j++) {
+      let val = this.value(i, j);
+    }
+  }
 }
 
   toString() {

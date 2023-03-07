@@ -19,9 +19,9 @@ export class Universe {
       }
       rle += row;
     }
-    rle.replace(/\w/, '');
 
     // Read RLE data
+    rle.replace(/\w/, '');
     this.arr = Array(this.height);
     rows = rle.split("$");
     let done = false;

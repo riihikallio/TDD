@@ -83,10 +83,7 @@ export class Universe {
     return result;
   }
 
-  toString() {
-    return this.arr.join("\n");
-  }
-
+  
   value(x, y) {
     let sum = 0;
     let tuples = [[1, 1],
@@ -118,3 +115,6 @@ export class Universe {
   }
 }
 
+toString() {
+  return this.arr.join("\n");
+}

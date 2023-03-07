@@ -19,7 +19,6 @@ describe("Unpack line", () => {
 });
 
 describe("Parsing", () => {
-
   it("Simple case", () => {
     let uni = new Universe("2o$oo!");
     let result = ["##",
@@ -75,7 +74,6 @@ x = 6, y = 2
 });
 
 describe("ToString", () => {
-
   it("Simple case", () => {
     let uni = new Universe("2ob3o$o4bo!");
     let result = `## ###
@@ -85,9 +83,7 @@ describe("ToString", () => {
 
 })
 
-
 describe("Encoding", () => {
-
   it("Simple case", () => {
     let key = "x = 2, y = 2\n2o$2o!";
     let uni = new Universe(key);

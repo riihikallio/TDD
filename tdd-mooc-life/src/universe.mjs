@@ -86,5 +86,25 @@ export class Universe {
   toString() {
     return this.arr.join("\n");
   }
+
+  value(x, y) {
+    let sum = 0;
+    let tuples = [[1,1],
+                  [1,0],
+                  [1,-1],
+                  [0,1],
+                  [0,0],
+                  [0,-1],
+                  [-1,1],
+                  [-1,0],
+                  [-1,-1]];
+    for (let t of tuples) {
+      let x0 = x + t[0];
+      let y0 = y + t[1];
+      if (x0 < 0 || y0 < 0 || x0 > this.width - 1 || y0 > this.height - 1) { continue; }
+      sum += (this.arr[y0][x0] === "#") ? 1 : 0;
+    }
+    return sum;
+  }
 }
 

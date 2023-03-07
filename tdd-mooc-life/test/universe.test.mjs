@@ -93,3 +93,16 @@ describe("Encoding", () => {
   });
 
 })
+
+describe("Value", () => {
+  it("Empty", () => {
+    let uni = new Universe("x=3,y=3\n3b$3b$3b!");
+    expect(uni.value(1, 1)).to.equal(0);
+  });
+
+  it("Three", () => {
+    let uni = new Universe("x=3,y=2\nbob$obo!");
+    expect(uni.value(1, 1)).to.equal(3);
+  });
+
+})

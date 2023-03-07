@@ -41,4 +41,24 @@ describe("Parsing", () => {
     expect(uni.arr).to.eql(result);
   });
 
+  it("Skip comments", () => {
+    let data = `#C Jabba
+#C Dabba
+2ob3o$o4bo!`;
+    let uni = new Universe(data);
+    let result = ["## ###",
+                  "#    #"];
+    expect(uni.arr).to.eql(result);
+  });
+
+  it("Parse X and Y", () => {
+    let data = `#C Jabba
+#C Dabba
+x=6,y=2
+2ob3o$o4bo!`;
+    let uni = new Universe(data);
+    expect(uni.width).to.equal(6, "Width mismatch");
+    expect(uni.height).to.equal(2, "Height mismatch");
+  });
+
 });

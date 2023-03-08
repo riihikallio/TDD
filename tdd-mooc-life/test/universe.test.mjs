@@ -9,11 +9,11 @@ describe("Unpack line", () => {
   });
 
   it("Complex sequence", () => {
-    expect(uni.unpackLine("4ob")[0]).to.equal("#### ");
+    expect(uni.unpackLine("4ob")[0]).to.equal("####.");
   });
 
   it("More complex sequence", () => {
-    expect(uni.unpackLine("4o2bo")[0]).to.equal("####  #");
+    expect(uni.unpackLine("4o2bo")[0]).to.equal("####..#");
   });
 
 });
@@ -28,15 +28,15 @@ describe("Parsing", () => {
 
   it("Complex case", () => {
     let uni = new Universe("2ob3o$o4bo!");
-    let result = ["## ###",
-                  "#    #"];
+    let result = ["##.###",
+                  "#....#"];
     expect(uni.arr).to.eql(result);
   });
 
   it("Extra data after !", () => {
     let uni = new Universe("2ob3o$o4bo!AAAAAA$ZZZZZZ");
-    let result = ["## ###",
-                  "#    #"];
+    let result = ["##.###",
+                  "#....#"];
     expect(uni.arr).to.eql(result);
   });
 
@@ -45,8 +45,8 @@ describe("Parsing", () => {
 #C Dabba
 2ob3o$o4bo!`;
     let uni = new Universe(data);
-    let result = ["## ###",
-                  "#    #"];
+    let result = ["##.###",
+                  "#....#"];
     expect(uni.arr).to.eql(result);
   });
 
@@ -66,8 +66,8 @@ x = 16, y = 12
 x = 6, y = 2
 2ob3o$o2bo!`;
     let uni = new Universe(data);
-    let result = ["## ###",
-                  "#  #  "];
+    let result = ["##.###",
+                  "#..#.."];
     expect(uni.arr).to.eql(result);
   });
 
@@ -76,8 +76,8 @@ x = 6, y = 2
 2ob3o$
 o2bo!`;
     let uni = new Universe(data);
-    let result = ["## ###",
-                  "#  #  "];
+    let result = ["##.###",
+                  "#..#.."];
     expect(uni.arr).to.eql(result);
   });
 
@@ -86,8 +86,8 @@ o2bo!`;
 describe("ToString", () => {
   it("Simple case", () => {
     let uni = new Universe("2ob3o$o4bo!");
-    let result = `## ###
-#    #`;
+    let result = `##.###
+#....#`;
     expect(uni.toString()).to.equal(result);
   });
 
@@ -124,7 +124,7 @@ describe("Expand", () => {
     let data = `x = 3, y = 2
 3o$3o!`;
     let uni = new Universe(data);
-    let result = "     \n ### \n ### \n     ";
+    let result = ".....\n.###.\n.###.\n.....";
     uni.expand();
     expect(uni.toString()).to.equal(result);
   });
@@ -136,7 +136,7 @@ describe("Tick", () => {
     let data = `x = 2, y = 2
 2o$2o!`;
     let uni = new Universe(data);
-    let result = "    \n ## \n ## \n    ";
+    let result = "....\n.##.\n.##.\n....";
     uni.tick();
     expect(uni.toString()).to.equal(result);
   });
@@ -145,7 +145,7 @@ describe("Tick", () => {
     let data = `x = 1, y = 3
 o$o$o!`;
     let uni = new Universe(data);
-    let result = "   \n   \n###\n   \n   ";
+    let result = "...\n...\n###\n...\n...";
     uni.tick();
     expect(uni.toString()).to.equal(result);
   });
@@ -164,7 +164,6 @@ bob$2bo$3o!`;
     let uni = new Universe(data);
     uni.tick(2);
     expect(uni.encode()).to.equal("x = 7, y = 7\n7b$7b$7b$5bob$3bobob$4b2ob$7b!");
-    console.log(uni.toString());
   });
 
 })

@@ -42,7 +42,7 @@ export class Universe {
     while (packed.length > 0) {
       found = packed.match(/(\d*)(\w)(!?)/);
       count = parseInt(found[1]) || 1;
-      char = (found[2] === "o") ? "#" : " ";
+      char = (found[2] === "o") ? "#" : ".";
       result += char.repeat(count);
       packed = packed.slice(found[0].length);
       if (found[3]) {
@@ -50,7 +50,7 @@ export class Universe {
         break;
       }
     }
-    result = result.concat(" ".repeat(this.width - result.length)); // Fill line ends
+    result = result.concat(".".repeat(this.width - result.length)); // Fill line ends
     return [result, done];
   }
 
@@ -106,13 +106,13 @@ export class Universe {
   expand() {
     // Expand left and right edges
     for (let i = 0; i < this.height; i++) {
-      this.arr[i] = " " + this.arr[i] + " ";
+      this.arr[i] = "." + this.arr[i] + ".";
     }
     this.width += 2;
     this.height += 2;
     // Add an empty row at top and bottom
-    this.arr.unshift(" ".repeat(this.width));
-    this.arr.push(" ".repeat(this.width));
+    this.arr.unshift(".".repeat(this.width));
+    this.arr.push(".".repeat(this.width));
   }
 
   tick(rounds = 1) {
@@ -128,7 +128,7 @@ export class Universe {
           } else if (val === 4) {
             tmp += this.arr[i][j];
           } else {
-            tmp += " ";
+            tmp += ".";
           }
         }
         tmps.push(tmp);

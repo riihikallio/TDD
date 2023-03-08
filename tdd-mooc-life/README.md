@@ -1,6 +1,8 @@
 # TDD exercise of Conway's Game of Life
 
-You can run the program by giving `life.mjs` execution permissions. You can also run it as `node life.mjs`.
+Run `npm install` to install prerequisities.
+
+You can run the app directly by giving `life.mjs` execution permissions. You can also run it as `node life.mjs`.
 
 You need to provide an RLE encoded file to initialize. `glider.rle` is provided as an example.
 

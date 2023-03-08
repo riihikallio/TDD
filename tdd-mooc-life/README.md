@@ -1,23 +1,9 @@
-# New JavaScript Project
+# TDD exercise of Conway's Game of Life
 
-An empty project with JavaScript testing tools preconfigured. Do whatever you like with it.
+You can run the program by giving `life.mjs` execution permissions. You can also run it as `node life.mjs`.
 
-## Prerequisites
+You need to provide an RLE encoded file to initialize. `glider.rle` is provided as an example.
 
-You'll need a recent [Node.js](https://nodejs.org/) version. Then download this project's dependencies with:
+To run the glider for 5 ticks use `./life.mjs -t 5 glider.rle`
 
-    npm install
-
-## Developing
-
-Run tests once
-
-    npm run test
-
-Run tests continuously
-
-    npm run autotest
-
-Code reformat
-
-    npm run format
+The output is RLE encoded by default. Use `-p` to get cleartext output. Use `-h` for help.
